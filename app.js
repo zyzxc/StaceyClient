@@ -26,13 +26,29 @@ app.all('*', function (req, res, next) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.get('/index', function (req, res) {
+    res.render('indexRouter', {title: '首页'});
+});
+
+app.get('/user', function (req, res) {
+    res.render('usersRouter', {title: '用户信息'});
+});
+
+app.get('/address', function (req, res) {
+    res.render('addressRouter', {title: '地址管理'})
+});
+
+app.get('/goods', function (req, res) {
+    res.render('goodsRouter', {title: '商品信息管理'})
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 app.use('/address', addressRouter);
 app.use('/goods', goodsRouter);
