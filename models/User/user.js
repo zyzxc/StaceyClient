@@ -18,23 +18,23 @@ function User(user) {
 module.exports = User;
 
 dbConfig.pool.getConnection(function (err, connection) {
-    /*var useDbSql = "USE stacey";
-    connection.query(useDbSql, function (err) {
-        if (err) {
-            console.log("USE Error:" + err.message);
-            return;
-        }
-        console.log("USE SUCCEED!");
-    });*/
     User.getUserByUserName = function getUserByUserName(username, callback) {
         console.log(username);
         var getUserByUserNameSql = "SELECT * FROM user WHERE code=?";
         connection.query(getUserByUserNameSql, [username], function (err, result) {
             if (err) {
-                console.log("getUserByUserName Error :" + err.message);
                 return;
             }
-            console.log("getUserByUserName Result :" + result);
+            callback(err, result);
+        })
+    }
+
+    User.getUserInfoByEmail = function (email, callback) {
+        var getInfoByEmailSql = "SELECT * FROM user WHERE email=?";
+        connection.query(getInfoByEmailSql, [email], function (err, result) {
+            if (err) {
+                return;
+            }
             callback(err, result);
         })
     }
@@ -49,5 +49,17 @@ dbConfig.pool.getConnection(function (err, connection) {
             console.log("getUserList Succees :" + JSON.stringify(result));
             callback(err, result);
         })
+    }
+    User.delUserById = function (userId, callback) {
+        var delUserByIdSql = "DELETE FROM user WHERE userId=?";
+        connection.query(delUserByIdSql, [userId], function (err, result) {
+            if (err) {
+                return;
+            }
+            callback(err, result);
+        })
+    }
+    User.updateUserById = function (userId, callback) {
+        //var updateUserByIdSql="UPDATE user ";
     }
 })

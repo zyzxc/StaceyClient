@@ -1,0 +1,50 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/styles/login.css',type='text/css')
+        script(src='/javascripts/jquery-3.2.1.js',type='text/javascript')
+    body
+        block content
+            .login
+                .login-head
+                    .login-head-a
+                        img(src='/images/img/a.jpg', title='', alt='')
+                        p 我的
+                    .login-head-b
+                        | 商户后台管理
+                .login-con
+                    .login-a
+                        form#loginForm(method='', action='#', onsubmit='return validate()')
+                            .login-b
+                                .login-b-a 用户登陆
+                                .login-b-b
+                                    ul
+                                        li
+                                            label(for='userName') 用户名：
+                                            input#mobile(type='text', name='userName')
+                                            h1#m-tip
+                                        li
+                                            label(for='password') 密   码：
+                                            input#password(type='password', name='password')
+                                            h1#p-tip
+                                        li
+                                            label 用户名：
+                                            input#input1(type='text')
+                                            img#checkCode(type='text', style='width: 55px')
+                                            a#createCode(href='#') 看不清楚
+                                            h1#c-tip
+                                        li.login-x
+                                            .login-x-a
+                                                input#clkLogin(type='submit', name='登录', value='登录')
+                                                .x
+                                            .login-x-a
+                                                input(type='submit', name='订单查询', value='订单查询')
+                                                .x
+                                .login-b-c
+                                    a(href='#') 免费接入
+                                    |   
+                                    a(href='#') 忘记登录密码？
+                .login-foot
+                    | 我的网络科技有限公司©2018 闽ICP备18042612号
+                script(src='/business/login.js')
