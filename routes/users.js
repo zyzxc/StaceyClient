@@ -58,7 +58,7 @@ router.post('/delUserById', function (req, res, next) {
         }
         res.json({
             code: 0,
-            msg: [],
+            msg: [{content: '删除成功！'}],
             result: result
         })
     })
